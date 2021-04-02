@@ -1,0 +1,22 @@
+<!-- Recommendation: copy-paste this code snippet
+  into a proper text editor before modifying -->
+<script>
+  (function () {
+    function isStripejsIntegrationMessageEvent(event) {
+      return (
+        event &&
+        event.data &&
+        event.data.type &&
+        event.data.type.startsWith &&
+        event.data.type.startsWith("stripejsIntegration")
+      );
+    }
+    window.addEventListener("message", function (event) {
+      if (!isStripejsIntegrationMessageEvent(event)) {
+        return;
+      }
+      const myWixHomePageOriginUrl = "http://example.com";
+      window.parent.postMessage(event.data, myWixHomePageOriginUrl);
+    });
+  })();
+</script>

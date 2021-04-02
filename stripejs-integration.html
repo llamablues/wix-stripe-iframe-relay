@@ -1,0 +1,44 @@
+<!-- Recommendation: copy-paste this code snippet
+    into a proper text editor before modifying -->
+<script>
+  (function () {
+    var stripe = Stripe("STRIPE_API_KEY_GOES_HERE");
+
+    window.addEventListener("message", function (event) {
+      handleAction(event && event.data);
+    });
+
+    function handleAction(action) {
+      if (!action || !action.type) {
+        return;
+      }
+
+      switch (action.type) {
+        case "stripejsIntegration/redirectToCheckout": {
+          var payload = action.payload;
+          var priceId = payload.priceId;
+          var successUrl = payload.successUrl;
+          var cancelUrl = payload.cancelUrl;
+          stripe
+            .redirectToCheckout({
+              lineItems: [
+                {
+                  price: priceId,
+                  quantity: 1,
+                },
+              ],
+              mode: "subscription",
+              successUrl,
+              cancelUrl,
+            })
+            .then(function (result) {
+              // If `redirectToCheckout` fails due to a browser or network
+              // error, display the localized error message to your customer
+              // using `result.error.message`.
+              console.error(result);
+            });
+        }
+      }
+    }
+  })();
+</script>
