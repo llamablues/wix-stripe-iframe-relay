@@ -18,16 +18,3 @@ export function relayStripeCheckoutInfo(payload) {
     },
   });
 }
-
-// The following code demonstrates how to call the relay
-// function from your site's page code.
-
-/*
-import {relay} from 'public/iframe-relay.js'
-
-$w.onReady(function () {
-  relay({
-      type: 'namespace/example'
-  });
-});
-*/
