@@ -15,7 +15,7 @@
       if (!isStripejsIntegrationMessageEvent(event)) {
         return;
       }
-      const myWixHomePageOriginUrl = "http://example.com";
+      var myWixHomePageOriginUrl = "https://www.example.com";
       window.parent.postMessage(event.data, myWixHomePageOriginUrl);
     });
   })();
